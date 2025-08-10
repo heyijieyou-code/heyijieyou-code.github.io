@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <a href="file:///C:/Users/liu/Desktop/first/index.html">Home</a>
+            <a href="file:///C:/Users/liu/Desktop/first/%E5%8C%BF%E5%90%8D%E6%8A%95%E7%A8%BF%E7%AE%B1.html">Whisper to us</a>
+             <style>
+           a{text-decoration: none;background-color: lightblue;padding:8px;margin-left: 5px;font-family: Caveat}
+           a:hover{background-color: black;color:white;font-family: Caveat;}
+           </style>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+           <link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Caveat:wght@400..700&family=Lobster&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>匿名投稿箱</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: lightyellow ;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        .description {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #7f8c8d;
+        }
+
+        .submission-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        input, textarea, select {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        textarea {
+            min-height: 200px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .privacy-notice {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+            margin-top: 20px;
+        }
+
+        .privacy-notice h3 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .confirmation {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            background-color: #e8f5e9;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #2ecc71;
+        }
+
+        .confirmation h2 {
+            color: #27ae60;
+            margin-bottom: 15px;
+        }
+
+        .word-counter {
+            text-align: right;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>匿名投稿箱</h1>
+        <p class="description">您可以在这里匿名提交您的想法、建议或反馈，所有信息将被严格保密。</p >
+        
+        <form id="submissionForm" class="submission-form">
+            <div class="form-group">
+                <label for="category">投稿类型</label>
+                <select id="category" name="category" required>
+                    <option value="">请选择...</option>
+                    <option value="suggestion">建议</option>
+                    <option value="feedback">反馈</option>
+                    <option value="complaint">投诉</option>
+                    <option value="other">其他</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="content">投稿内容</label>
+                <textarea id="content" name="content" placeholder="请输入您要投稿的内容..." required></textarea>
+                <div class="word-counter"><span id="wordCount">0</span>/1000</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">设置查看密码（可选）</label>
+                <input type="password" id="password" name="password" placeholder="如设置密码，管理员需输入密码才能查看">
+                <small>如果不设置密码，管理员可以直接查看您的投稿</small>
+            </div>
+            
+            <button type="submit" class="submit-btn">提交投稿</button>
+        </form>
+        
+        <div class="privacy-notice">
+            <h3>隐私声明</h3>
+            <p>我们承诺：</p >
+            <ul>
+                <li>不会收集任何可以识别您身份的信息</li>
+                <li>不会记录您的IP地址或其他设备信息</li>
+                <li>投稿内容仅限管理员查看</li>
+                <li>您可以选择设置密码保护您的投稿</li>
+            </ul>
+        </div>
+        
+        <div id="confirmation" class="confirmation">
+            <h2>投稿成功！</h2>
+            <p>您的投稿已成功提交，感谢您的参与。</p >
+            <p>投稿ID: <span id="submissionId"></span></p >
+            <p id="passwordNotice"></p >
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('submissionForm');
+            const content = document.getElementById('content');
+            const wordCount = document.getElementById('wordCount');
+            const confirmation = document.getElementById('confirmation');
+            const submissionIdSpan = document.getElementById('submissionId');
+            const passwordNotice = document.getElementById('passwordNotice');
+            
+            // 字数统计
+            content.addEventListener('input', function() {
+                const count = this.value.length;
+                wordCount.textContent = count;
+                
+                if (count > 1000) {
+                    wordCount.style.color = 'red';
+                } else {
+                    wordCount.style.color = '#7f8c8d';
+                }
+            });
+            
+            // 表单提交
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // 验证内容长度
+                if (content.value.length > 1000) {
+                    alert('内容长度不能超过1000个字符');
+                    return;
+                }
+                
+                // 生成随机投稿ID
+                const id = 'SUB-' + Math.random().toString(36).substr(2, 8).toUpperCase();
+                submissionIdSpan.textContent = id;
+                
+                // 如果有密码，显示提示
+                const password = document.getElementById('password').value;
+                if (password) {
+                    passwordNotice.textContent = `您设置了查看密码: ${password}，请妥善保管`;
+                } else {
+                    passwordNotice.textContent = '您未设置查看密码，管理员可以直接查看此投稿';
+                }
+                
+                // 显示确认信息
+                form.style.display = 'none';
+                confirmation.style.display = 'block';
+                
+                // 在实际应用中，这里应该将数据发送到服务器
+                // 以下是模拟数据对象
+                const submission = {
+                    id: id,
+                    category: document.getElementById('category').value,
+                    content: content.value,
+                    password: password || null,
+                    timestamp: new Date().toISOString()
+                };
+                
+                console.log('投稿内容:', submission);
+    </script>
+</body>
+</html>
