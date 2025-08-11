@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <a href="index.html">Home</a>
+             <a href="miming.html">Whisper to us</a>
+             <a href="rock2.html">rps game </a>
+             <link rel="preconnect" href="https://fonts.googleapis.com">
+           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+           <link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Caveat:wght@400..700&family=Lobster&display=swap" rel="stylesheet">
+           <style>
+           a{text-decoration: none;background-color: lightblue;font-family: Caveat}
+           a:hover{background-color: black;color:white;font-family: Caveat;}
+           </style>
+    </head>
+         <body style='background-color:lightyellow;'>
+        <button onclick='rps()'>Start the Game</button>
+        <h3 id='result'></h3>
+        <h3 id='win'></h3>
+        <h3 id='score'>Score: Player 0 - 0 Computer</h3>
+        <script>
+            let playerScore = 0;
+            let computerScore = 0;
+            
+            function rps() {
+                let choices = ['r','p','s'];
+                let cc = choices[Math.floor(Math.random()*3)];
+                let pc = prompt('Choose r (rock), p (paper), or s (scissors)').toLowerCase();
+                while(!choices.includes(pc)) {
+                    pc = prompt('Invalid choice! Please choose r, p, or s').toLowerCase();
+                }
+                
+                document.getElementById('result').innerHTML = 
+                    'Player chose ' + pc + ' and computer chose ' + cc;
+                
+                if(cc == pc) {
+                    document.getElementById('win').innerHTML = 'Tie game!';
+                }
+                else {
+                    if((pc === 'r' && cc === 's') || 
+                       (pc === 'p' && cc === 'r') || 
+                       (pc === 's' && cc === 'p')) {
+                        document.getElementById('win').innerHTML = 'You win!';
+                        playerScore++;
+                    }
+                    else {
+                        document.getElementById('win').innerHTML = 'You lose';
+                        computerScore++;
+                    }
+                }
+                document.getElementById('score').innerHTML = 
+                    'Score: Player ' + playerScore + ' - ' + computerScore + ' Computer';
+            }
+        </script>
+    </body>
+</html>
